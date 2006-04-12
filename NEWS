@@ -1,0 +1,17 @@
+
+The Clueless Programmers' JFS Translator
+----------------------------------------
+
+At last this translator is out of deep freeze.
+
+This translator could read JFS partitions (at least on the computers
+we tried it on) by 2002 August, but then our final semester exams
+started and, after the exams, we moved to our homes. Neither John nor
+me didn't have much of an internet connection to put this thing
+somewhere on the web.  We couldn't keep track of the mailing lists
+either.  (I swear this is true.  We're poor jobless Indian youth.)
+Finally I bought a modem... and here's it - "the first (and only, as
+of now) industrial strength journaling filesystem for the Hurd"
+Only, it doesn't do journaling, let alone writing :)
+
+- Sajith.

@@ -1,0 +1,27 @@
+
+Compiling and installing the translator
+---------------------------------------
+
+This works for me:
+
+$ make -f Makefile.sep
+$ su -c "cp jfs /hurd"
+
+It probably wouldn't compile correctly on recent releases of the Hurd.
+Mine is a pre-libio Hurd-0.2, installed from quite old Debian G1 CDs.
+Apparently many things have changed since then. I don't have access to
+a recent release of the Hurd, so I don't know what works. Please fix
+errors yourself if you can.
+
+The translator is invoked like this (assuming /dev/hd0s5 is a JFS
+partition):
+
+$ settrans -ac node /hurd/jfs /dev/hd0s5
+
+It can't do passive translation yet. 
+
+See "invoking settrans" in the GNU Hurd Reference Manual for details.
+
+Further, there are 'Makefile.am' and 'configure.in' files which can be
+processed by GNU autotools. I used them basically to learn autotools
+and for convenience. They should work, but aren't good enough...

@@ -1,0 +1,23 @@
+
+The Clueless Programmers' JFS Translator
+----------------------------------------
+
+* Compile and run on a recent Hurd system.
+
+* Fix permissions problem.
+
+* It doesn't do passive translation.
+
+* On running 'find', it breaks. Fix.
+
+* Check cleanliness on invoking the translator.
+
+* callbacks.c screams for attention.
+
+* Port jfsutils package to Hurd.
+
+* Fix inconsistency in the use of datatypes. We've unsigned int at
+  someplace, u32 at another place, uint32_t at someplace else...
+
+* Reading and 'riting : Make the translator write-capable.
+  Probably beyond me.

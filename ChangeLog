@@ -1,0 +1,19 @@
+2006-04-12  Manuel Menal  <mmenal@hurdfr.org>
+
+	* Makefile.am: Add -D_FILE_OFFSET_BITS=64.
+	* pager.c (diskfs_get_filemap, create_disk_pager)
+	(pager_notify_evict): Convert to new interface.
+	(pager_read_page): Fix signedness.
+
+	* dir.c (dirscan, diskfs_cached_lookup): Fix signedness.
+	* jfs_dirread.c (UTF8_Buffer): Fix signedness. 
+
+	* jfs.c (jfs_info): Fix endif.
+
+	* jfs_inode.c: Add missing include.
+
+2002-11-24  Sajith T S  <sajith@symonds.net>
+
+	* Initial release. All it does is reading from JFS partitions, on
+	my computer at least. A whole lot of things are missing...
+

@@ -1,0 +1,41 @@
+
+The Clueless Programmers' JFS Translator
+----------------------------------------
+
+This is the initial release of a JFS translator for the GNU Hurd.
+
+As of now, the translator is only capable of reading from jfs stores,
+you can't do any writing. Huge number of bugs surely exist. Both of
+us aren't great programmers yet, and what we've done with the code is
+naturally sloppy - even though much of it is copied from other
+existing Hurd translators and jfsutils package - xpeek, mostly.
+
+This translator has been our academic project. Naturally, poor newbie
+code sense shows through all the way. Besides, we were trying just to
+make it work somehow.
+
+Thanks to our senior and local GNU hippy Anoop M S for suggesting JFS
+instead of ReiserFS, which could have lead us to disaster.
+
+Thanks to Emacs for everything :)
+
+Thanks to Marcus and Neal and many people at #hurd for answering those
+silly questions.
+
+The Hurd is GNU project's microkernel-based multiserver environment.
+More info on the Hurd can be found at its homepage:
+
+    http://www.gnu.org/software/hurd/
+
+and at other sources in the web. (Since you're reading this, I must be
+dumb to give this link...)
+
+JFS (Jornaled File System - confusing name, since other jouraled
+filesystems such as ReiserFS and XFS do exist) is a journaled
+filesystem developed by IBM, which have made into to 2.4.x series of
+the Linux kernel.  JFS has already been in use in some other IBM
+operating systems - OS/2 and AIX. As a journaled filesystem, JFS is
+much more feature-rich and reliable than traditional UNIX
+filesystems. The webpage of the JFS's Linux port is at:
+
+    http://oss.software.ibm.com/jfs/
