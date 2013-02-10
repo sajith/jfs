@@ -1,7 +1,7 @@
 
 bin_PROGRAMS = jfs
 
-jfs_LDADD = -lthreads -ldiskfs -lpager -lstore -liohelp -lfshelp \
+jfs_LDADD = -lpthread -ldiskfs -lpager -lstore -liohelp -lfshelp \
 -lports -lihash -lshouldbeinlibc
 
 CPPFLAGS += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64

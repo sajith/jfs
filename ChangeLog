@@ -1,3 +1,18 @@
+2013-02-10  Samuel Thibault  <samuel.thibault@ens-lyon.org>
+
+	Fix build against libpthread.
+
+	* configure.in: Look for pthread_exit in libpthread instead of
+	cthread_init in libthreads.
+	* Makefile.am: Link against libpthread instead of libthreads.
+	* dir.c: Use pthread_mutex_lock/unlock instead of mutex_lock/unlock.
+	(read_node) Use posix-compliant st_atime struct members.
+	* jfs.c: Include pthread.h instead of cthreads.h.
+	(main): Use pthread_exit instead of cthread_exit.
+	(jfs_info, jfs_panic): Use pthread_mutex_lock/unlock instead of
+	mutex_lock/unlock.
+
+
 2006-04-12  Manuel Menal  <mmenal@hurdfr.org>
 
 	* Makefile.am: Add -D_FILE_OFFSET_BITS=64.

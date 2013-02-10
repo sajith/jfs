@@ -18,7 +18,7 @@ dnl AC_CHECK_LIB(pager, pager_get_port)
 dnl AC_CHECK_LIB(ports, ports_create_bucket)
 dnl AC_CHECK_LIB(shouldbeinlibc, device_map)
 dnl AC_CHECK_LIB(store, store_free)
-dnl AC_CHECK_LIB(threads, cthread_init)
+dnl AC_CHECK_LIB(pthread, pthread_exit)
 
 dnl Checks for header files.
 AC_HEADER_STDC

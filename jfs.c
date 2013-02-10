@@ -35,7 +35,7 @@
 
 #include <argp.h>
 #include <argz.h>
-#include <cthreads.h>
+#include <pthread.h>
 #include <hurd/diskfs.h>
 #include <hurd/store.h>
 
@@ -137,7 +137,7 @@ main (int argc, char **argv)
   diskfs_cached_lookup (2, &diskfs_root_node);
 
   diskfs_startup_diskfs (bootstrap, 0);
-  cthread_exit (0);
+  pthread_exit (0);
   return 0;
 }
 
@@ -153,9 +153,9 @@ jfs_info (const char *fmt, ...)
   FILE *fp = fopen (LOGFILE, "a+");
 
   va_start (arg, fmt);
-  mutex_lock (&printf_lock);
+  pthread_mutex_lock (&printf_lock);
   done = vfprintf (fp, fmt, arg);
-  mutex_unlock (&printf_lock);
+  pthread_mutex_unlock (&printf_lock);
   va_end (arg);
 
   fclose (fp);
@@ -172,7 +172,7 @@ jfs_panic (const char * fmt, ...)
 {
   va_list args;
 
-  mutex_lock(&printf_lock);
+  pthread_mutex_lock(&printf_lock);
 
   va_start (args, fmt);
   vsprintf (error_buf, fmt, args);
@@ -181,7 +181,7 @@ jfs_panic (const char * fmt, ...)
   fprintf(stderr, "jfs: %s: panic:  %s\n",
 	  diskfs_disk_name, error_buf);
 
-  mutex_unlock(&printf_lock);
+  pthread_mutex_unlock(&printf_lock);
 
   exit (1);
 }

@@ -182,9 +182,9 @@ diskfs_lookup_hard (struct node *dp, const char *name,
 	  /* We don't have to do the normal rigamarole, because
 	     we are permanently read-only, so things are necessarily
 	     quiescent.  Just be careful to honor the locking order. */
-	  mutex_unlock (&dp->lock);
+	  pthread_mutex_unlock (&dp->lock);
 	  diskfs_cached_lookup (gotinum,npp);
-	  mutex_lock (&dp->lock);
+	  pthread_mutex_lock (&dp->lock);
 	}
     }
   else if (namelen == 1 && name[0] == '.')
@@ -254,13 +254,13 @@ read_node (struct node *np)
   else
     jfs_info("not link \n");
  
-  st->st_atime = di.di_atime.tv_sec;
-  st->st_mtime = di.di_mtime.tv_sec;
-  st->st_ctime = di.di_ctime.tv_sec;
+  st->st_atim.tv_sec = di.di_atime.tv_sec;
+  st->st_mtim.tv_sec = di.di_mtime.tv_sec;
+  st->st_ctim.tv_sec = di.di_ctime.tv_sec;
 
-  st->st_atime_usec = di.di_atime.tv_nsec / 1000;
-  st->st_mtime_usec = di.di_mtime.tv_nsec / 1000;
-  st->st_ctime_usec = di.di_ctime.tv_nsec / 1000;
+  st->st_atim.tv_nsec = di.di_atime.tv_nsec;
+  st->st_mtim.tv_nsec = di.di_mtime.tv_nsec;
+  st->st_ctim.tv_nsec = di.di_ctime.tv_nsec;
 
   st->st_blksize = vm_page_size * 2;
   st->st_blocks = di.di_size / 512 +1;
@@ -312,7 +312,7 @@ diskfs_cached_lookup (ino_t inum, struct node **npp)
 	*npp = np;
         np->references++;
 	spin_unlock (&diskfs_node_refcnt_lock);
-	mutex_lock (&np->lock);	
+	pthread_mutex_lock (&np->lock);	
 	jfs_info("%s found in cache \n",__FUNCTION__);
 	return 0;   
       }
@@ -339,7 +339,7 @@ diskfs_cached_lookup (ino_t inum, struct node **npp)
     }
 
   /* if(inum!=2)  */
-  /*   mutex_lock (&np->lock); */
+  /*   pthread_mutex_lock (&np->lock); */
 
   np->cache_id = inum;
 
@@ -353,7 +353,7 @@ diskfs_cached_lookup (ino_t inum, struct node **npp)
   spin_unlock (&diskfs_node_refcnt_lock);
 
   /* Get the contents of NP off disk.  */
-  /* mutex_lock (&np->lock); */
+  /* pthread_mutex_lock (&np->lock); */
   err = read_node (np);
   np->references++;
   *npp = np;
