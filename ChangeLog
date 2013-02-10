@@ -1,5 +1,12 @@
 2013-02-10  Samuel Thibault  <samuel.thibault@ens-lyon.org>
 
+	Fix automake warning.
+
+	* Makefile.am: Use AM_CFLAGS and AM_CPPFLAGS instead of CFLAGS and
+	CPPFLAGS.
+
+2013-02-10  Samuel Thibault  <samuel.thibault@ens-lyon.org>
+
 	Fix build against libpthread.
 
 	* configure.in: Look for pthread_exit in libpthread instead of

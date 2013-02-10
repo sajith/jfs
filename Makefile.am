@@ -4,9 +4,9 @@ bin_PROGRAMS = jfs
 jfs_LDADD = -lpthread -ldiskfs -lpager -lstore -liohelp -lfshelp \
 -lports -lihash -lshouldbeinlibc
 
-CPPFLAGS += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
+AM_CPPFLAGS = -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
 
-CFLAGS += -Wall -g -O2
+AM_CFLAGS = -Wall -g -O2
 
 EXTRA_DIST = Makefile.sep
 
